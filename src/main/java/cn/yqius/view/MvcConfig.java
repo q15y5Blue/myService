@@ -15,11 +15,12 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("home");
         registry.addViewController("/hello").setViewName("hello");
         registry.addViewController("/login").setViewName("login");
-//        this.addCommenView(registry);
+        this.addTieBa(registry);
     }
 
 
-    public void addCommenView(ViewControllerRegistry registry){
+    public void addTieBa(ViewControllerRegistry registry){
+        registry.addViewController("/article").setViewName("article");
     }
 
     @Override
