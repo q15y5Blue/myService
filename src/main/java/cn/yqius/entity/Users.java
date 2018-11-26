@@ -1,37 +1,53 @@
 package cn.yqius.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class Users {
+public class Users implements Serializable {
+
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private String name;
+    @Column(length = 60)
+    private String username;
 
+    @Column(length = 60)
     private String nickName;
 
+    @Column(length = 600)
     private String imgPath;
 
-    public Integer getId() {
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user",fetch = FetchType.LAZY)
+    private List<Article> articleList = new ArrayList<Article>();
+
+    public List<Article> getArticleList() {
+        return articleList;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setArticleList(List<Article> articleList) {
+        this.articleList = articleList;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getNickName() {
@@ -52,4 +68,5 @@ public class Users {
 
     public Users() {
     }
+
 }

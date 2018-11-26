@@ -18,7 +18,6 @@ public class MvcConfig implements WebMvcConfigurer {
         this.addTieBa(registry);
     }
 
-
     public void addTieBa(ViewControllerRegistry registry){
         registry.addViewController("/article").setViewName("article");
     }

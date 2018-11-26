@@ -20,7 +20,7 @@ public class MainController {
 	public @ResponseBody
 	String addNewUser (@RequestParam String name, @RequestParam String nickName) {
 		Users n = new Users();
-		n.setName(name);
+		n.setUsername(name);
 		n.setNickName(nickName);
 		userRepository.save(n);
 		return "Saved";

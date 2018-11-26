@@ -1,0 +1,49 @@
+<div class="col-md-3 col-sm-5">
+<div class="sidebar blog-sidebar">
+
+    <div th:fragment="comments" class="sidebar-item  recent">
+        <h3>热门评论</h3>
+
+        <div class="media">
+            <div class="pull-left">
+                <a href="#"><img th:src="@{//images/portfolio/project1.jpg}" alt=""></a>
+            </div>
+            <div class="media-body">
+                <h4><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit,</a></h4>
+                <p>posted on  07 March 2014</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar-item categories">
+        <h3>分类</h3>
+        <ul class="nav navbar-stacked">
+            <li><a href="#">类别111111<span class="pull-right">(1)</span></a></li>
+            <li class="active"><a href="#">活动类别<span class="pull-right">(8)</span></a></li>
+            <li><a href="#">非活动类别<span class="pull-right">(4)</span></a></li>
+        </ul>
+    </div>
+    <div class="sidebar-item tag-cloud">
+        <h3>评论热点</h3>
+        <ul class="nav nav-pills">
+            <li><a href="#">1111</a></li>
+            <li><a href="#">2222</a></li>
+            <li><a href="#">3333</a></li>
+            <li><a href="#">4444</a></li>
+            <li><a href="#">5555</a></li>
+            <li><a href="#">6666</a></li>
+        </ul>
+    </div>
+    <div class="sidebar-item popular">
+        <h3>最近图片</h3>
+        <ul class="gallery">
+            <li><a href="#"><img th:src="@{/images/portfolio/popular1.jpg}" alt=""></a></li>
+            <li><a href="#"><img th:src="@{/images/portfolio/popular2.jpg}" alt=""></a></li>
+            <li><a href="#"><img th:src="@{/images/portfolio/popular3.jpg}" alt=""></a></li>
+            <li><a href="#"><img th:src="@{/images/portfolio/popular4.jpg}" alt=""></a></li>
+            <li><a href="#"><img th:src="@{/images/portfolio/popular5.jpg}" alt=""></a></li>
+            <li><a href="#"><img th:src="@{/images/portfolio/popular1.jpg}" alt=""></a></li>
+        </ul>
+    </div>
+</div>
+</div>
