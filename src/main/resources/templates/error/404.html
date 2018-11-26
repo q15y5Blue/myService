@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/head::head(~{::title})"></head>
+<title>404界面</title>
+<body>
+<header th:replace="common/header::header"></header>
+    <section id="error-page">
+        <div class="error-page-inner">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="text-center">
+                            <div class="bg-404">
+                                <div class="error-image">                                
+                                    <img class="img-responsive" src="../images/404.png" alt="">
+                                </div>
+                            </div>
+                            <h2>页面未找到</h2>
+                            <p>404 不解释</p>
+                            <a th:href="@{/index}" class="btn btn-error">返回主页</a>
+                            <div class="social-link">
+                                <span><a href="#"><i class="fa fa-facebook"></i></a></span>
+                                <span><a href="#"><i class="fa fa-twitter"></i></a></span>
+                                <span><a href="#"><i class="fa fa-google-plus"></i></a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<div th:replace="common/footer::footer(~{::script.jsSrc})"></div>
+</body>
+</html>

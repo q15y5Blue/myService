@@ -1,4 +1,4 @@
-<div th:fragment="footer">
+<div th:fragment="footer(script)">
 <footer id="footer">
     <div class="container">
         <div class="row">
@@ -14,10 +14,10 @@
     </div>
 </footer>
 <!--/#footer-->
-    <script type="text/javascript" th:src="@{/templates/js/vue/vue.min.js}"></script>
     <script type="text/javascript" th:src="@{/templates/js/jquery.js}"></script>
     <script type="text/javascript" th:src="@{/templates/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/templates/js/lightbox.min.js}"></script>
     <script type="text/javascript" th:src="@{/templates/js/wow.min.js}"></script>
     <script type="text/javascript" th:src="@{/templates/js/main.js}"></script>
+    <script th:repalce="${script}"></script>
 </div>

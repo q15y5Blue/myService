@@ -22,6 +22,8 @@ public class Users implements Serializable {
     @Column(length = 600)
     private String imgPath;
 
+    @OneToMany
+    private List<Article> articleList = new ArrayList<Article>();
 
     public Long getId() {
         return id;
@@ -30,9 +32,6 @@ public class Users implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user",fetch = FetchType.LAZY)
-    private List<Article> articleList = new ArrayList<Article>();
 
     public List<Article> getArticleList() {
         return articleList;

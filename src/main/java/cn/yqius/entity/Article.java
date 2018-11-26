@@ -1,14 +1,15 @@
 package cn.yqius.entity;
 
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.ResourceSupport;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name ="article")
-public class Article implements Serializable {
+public class Article  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,28 +24,12 @@ public class Article implements Serializable {
     @Column
     private Date date;
 
-    @OneToMany(cascade = CascadeType.REMOVE,mappedBy = "articleId", fetch =FetchType.EAGER)
+    @OneToMany
     private List<Reply> replies= new ArrayList<Reply>();
 
     @ManyToOne
     @JoinColumn(name="userId")
     private Users user;
-
-    public List<Reply> getReplies() {
-        return replies;
-    }
-
-    public void setReplies(List<Reply> replies) {
-        this.replies = replies;
-    }
-
-    public Users getUser() {
-        return user;
-    }
-
-    public void setUser(Users user) {
-        this.user = user;
-    }
 
     public Long getId() {
         return id;
@@ -78,6 +63,35 @@ public class Article implements Serializable {
         this.date = date;
     }
 
+    public List<Reply> getReplies() {
+        return replies;
+    }
+
+    public void setReplies(List<Reply> replies) {
+        this.replies = replies;
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
+    }
+
     public Article() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Article)) return false;
+        Article article = (Article) o;
+        return Objects.equals(id, article.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

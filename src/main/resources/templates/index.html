@@ -61,8 +61,6 @@
         </div>
    </section>
     <!--/#action-->
-
-
-    <div th:replace="common/footer::footer"></div>
+<div th:replace="common/footer::footer(~{::script.jsSrc})"></div>
 </body>
 </html>
