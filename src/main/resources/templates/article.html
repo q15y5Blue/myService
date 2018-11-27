@@ -4,19 +4,18 @@
 <title>贴吧内容</title>
 <body>
 <header th:replace="common/header::header"></header>
-    <section id="blog" class="padding-top">
+    <section  class="padding-top">
         <div class="container">
             <div class="row">
-                <div class="col-md-9 col-sm-7" id="article">
-                    <div class="row">
+                <div class="col-md-9 col-sm-7" id="article" name="article">
+                    <div class="row" id="blog">
                          <div class="col-sm-12 col-md-12">
-
                             <div class="single-blog single-column" v-for="ar in articles">
                                 <div class="post-content overflow">
                                     <h2 class="post-title bold"><a href="">{{ar.title}}</a></h2>
-                                    <h3 class="post-author"><a href="#">用户名：{{ar.user}}</a></h3>
-                                    <p>内容啊</p>
-                                    <a href="#" class="read-more">发帖时间：{{ar.date}}</a>
+                                    <h3 class="post-author"><a href="javascript:void(0);">用户名：{{ar.user.username}}</a></h3>
+                                    <p>{{ar.content}}</p>
+                                    <a href="javascript:void(0);" class="read-more">发帖时间：{{ar.date}}</a>
                                     <div class="post-bottom overflow">
                                         <ul class="nav navbar-nav post-nav">
                                             <li><a href="#"><i class="fa fa-tag"></i>收藏</a></li>
@@ -24,14 +23,11 @@
                                             <li><a href="#"><i class="fa fa-comments"></i>3 回复</a></li>
                                         </ul>
                                     </div>
-
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
-                    <div th:replace="common/article/page::pageNo"></div>
+        <div th:replace="common/article/page::pageNo"></div>
                  </div>
         <div th:replace="common/article/sidePlace"></div>
             </div>
@@ -39,6 +35,8 @@
     </section>
     <!--/#blog-->
 </body>
+
 <script class="custJs" th:src="@{/templates/js/web/articleJs.js}"></script>
+<script class="custJs" type="text/javascript" th:src="@{/templates/js/web/common.js}"></script>
 <div th:replace="common/footer::footer(~{::script.custJs})"></div>
 </html>

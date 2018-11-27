@@ -3,7 +3,7 @@ package cn.yqius.repository;
 import cn.yqius.entity.Article;
 import cn.yqius.entity.Reply;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+//import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 

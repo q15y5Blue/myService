@@ -1,8 +1,5 @@
 package cn.yqius.entity;
 
-import org.springframework.hateoas.Link;
-import org.springframework.hateoas.ResourceSupport;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;

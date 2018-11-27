@@ -2,18 +2,21 @@ var articleObj = new Vue({
     el : "#blog",
     data:{
         articles:[],
+        items:[],
+        pageNo : typeof(pageObj.nowPage)=='undefined'?0:pageObj.nowPage,
+        url : "/article/getPages",
     },
     mounted:function () {
-        var url = "getArticles?page=0&size=10";
-        this.$http.get(url,{}).then(response=>{
+        this.url = this.url+'?pageNo='+this.pageNo;
+        this.$http.get(this.url).then(response=>{
             this.parserData(response.data);
         },failRes =>{
             console.error("连接错误");
         });
     },methods:{
         parserData:function(data){
-            this.articles = data._embedded.article;
-            console.log(data);
-        },
+            pageObj.initDate(data,this.url);
+            this.articles = data.content;
+        }
     }
 });
