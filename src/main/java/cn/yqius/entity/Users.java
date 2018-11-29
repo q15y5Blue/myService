@@ -1,13 +1,17 @@
 package cn.yqius.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
+@Table(name="users")
 public class Users implements Serializable {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,8 +26,8 @@ public class Users implements Serializable {
     @Column(length = 600)
     private String imgPath;
 
-    @OneToMany
-    private List<Article> articleList = new ArrayList<Article>();
+    @OneToMany(mappedBy = "user")
+    private Set<Article> articleList = new HashSet<Article>();
 
     public Long getId() {
         return id;
@@ -33,11 +37,11 @@ public class Users implements Serializable {
         this.id = id;
     }
 
-    public List<Article> getArticleList() {
+    public Set<Article> getArticleList() {
         return articleList;
     }
 
-    public void setArticleList(List<Article> articleList) {
+    public void setArticleList(Set<Article> articleList) {
         this.articleList = articleList;
     }
 

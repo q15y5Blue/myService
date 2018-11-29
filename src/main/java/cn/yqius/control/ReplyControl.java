@@ -17,9 +17,9 @@ public class ReplyControl {
 
     @GetMapping(path="/getReplies")
     public @ResponseBody
-    Iterable<Reply> getArticlePage(){
-        Article ar = new Article();
-        return replyRepository.findRepliesByArticle(ar);
+    Iterable<Reply> getArticlePageByArticle(
+            @ModelAttribute("article") Long articleId){
+        return replyRepository.findRepliesByArticle(articleId);
     }
 
 }

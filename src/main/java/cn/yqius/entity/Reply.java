@@ -1,5 +1,7 @@
 package cn.yqius.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -27,7 +29,8 @@ public class Reply implements Serializable {
     @Column(name="fn",length = 128)
     private Long parentId;
 
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="article_id")
     private Article article;
 
@@ -95,11 +98,12 @@ public class Reply implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Reply)) return false;
         Reply reply = (Reply) o;
-        return Objects.equals(id, reply.id);
+        return Objects.equals(id, reply.id) &&
+                Objects.equals(article, reply.article);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, article);
     }
 }

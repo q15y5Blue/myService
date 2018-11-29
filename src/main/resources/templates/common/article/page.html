@@ -1,26 +1,17 @@
 <div th:fragment="pageNo" class="blog-pagination">
     <ul class="pagination" id="pageObj">
-        <li><a href="javascript:void(0)">before</a></li>
-
-        <template v-for="page in (showMaxPage)" >
+        <li><a @click="articleObj.updateUrl(nowPage-1)">{{nowPage-1}}</a></li>
+        <template v-for="page in showList" >
             <li v-if="nowPage+1==page" class="active"><a href="javascript:void(0)">{{page}}</a></li>
-            <li v-else ><a @click="getArticlePage(page-1)"  href="#article">{{page}}</a></li>
+            <li v-else ><a @click="articleObj.updateUrl(page-1)"  href="#article">{{page}}</a></li>
         </template>
-
 
         <template v-if="totalPages > showMaxPage">
-            <template v-if="totalPages">
-                 <li ><a  href="javascript:void(0)">···</a></li>
-            </template>
-            <template v-if="nowPage == totalPages-1">
-                <li class="active" ><a @click="getArticlePage(totalPages-1)" href="#article">{{totalPages-1}}</a></li>
-            </template>
-            <template v-else>
-                <li ><a @click="getArticlePage(totalPages-1)" href="#article">{{totalPages}}</a></li>
+            <template v-if="right < totalPages">
+                 <li v-if="right < totalPages-1"><a  href="javascript:void(0)">···</a></li>
+                <li ><a @click="articleObj.updateUrl(totalPages-1)" href="#article">{{totalPages}}</a></li>
             </template>
         </template>
-
-
-        <li><a href="javascript:void(0)">next</a></li>
+        <li><a @click="articleObj.updateUrl(nowPage+1)">{{nowPage+1}}</a></li>
     </ul>
 </div>

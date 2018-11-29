@@ -1,5 +1,8 @@
 package cn.yqius.entity;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
@@ -21,10 +24,12 @@ public class Article  implements Serializable {
     @Column
     private Date date;
 
-    @OneToMany
-    private List<Reply> replies= new ArrayList<Reply>();
 
-    @ManyToOne
+    @OneToMany(mappedBy = "article",fetch = FetchType.LAZY)
+    private Set<Reply> replies= new HashSet<Reply>();
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="userId")
     private Users user;
 
@@ -60,11 +65,11 @@ public class Article  implements Serializable {
         this.date = date;
     }
 
-    public List<Reply> getReplies() {
+    public Set<Reply> getReplies() {
         return replies;
     }
 
-    public void setReplies(List<Reply> replies) {
+    public void setReplies(Set<Reply> replies) {
         this.replies = replies;
     }
 
@@ -84,11 +89,13 @@ public class Article  implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Article)) return false;
         Article article = (Article) o;
-        return Objects.equals(id, article.id);
+        return Objects.equals(id, article.id) &&
+                Objects.equals(title, article.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+
+        return Objects.hash(id, title);
     }
 }
