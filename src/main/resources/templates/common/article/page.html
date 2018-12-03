@@ -1,5 +1,8 @@
+<!-- articleObj 只需要更改这里就好了-->
 <div th:fragment="pageNo" class="blog-pagination">
     <ul class="pagination" id="pageObj">
+
+
         <li><a @click="articleObj.updateUrl(nowPage-1)">{{nowPage-1}}</a></li>
         <template v-for="page in showList" >
             <li v-if="nowPage+1==page" class="active"><a href="javascript:void(0)">{{page}}</a></li>
@@ -13,5 +16,23 @@
             </template>
         </template>
         <li><a @click="articleObj.updateUrl(nowPage+1)">{{nowPage+1}}</a></li>
+    </ul>
+</div>
+
+<div th:fragment="replyPage" class="blog-pagination">
+    <ul class="pagination" id="pageObj">
+        <li><a @click="commentsJs.updateUrl(nowPage-1)">{{nowPage-1}}</a></li>
+        <template v-for="page in showList" >
+            <li v-if="nowPage+1==page" class="active"><a href="javascript:void(0)">{{page}}</a></li>
+            <li v-else ><a @click="commentsJs.updateUrl(page-1)"  href="#article">{{page}}</a></li>
+        </template>
+
+        <template v-if="totalPages > showMaxPage">
+            <template v-if="right < totalPages">
+                <li v-if="right < totalPages-1"><a  href="javascript:void(0)">···</a></li>
+                <li ><a @click="commentsJs.updateUrl(totalPages-1)" href="#article">{{totalPages}}</a></li>
+            </template>
+        </template>
+        <li><a @click="commentsJs.updateUrl(nowPage+1)">{{nowPage+1}}</a></li>
     </ul>
 </div>

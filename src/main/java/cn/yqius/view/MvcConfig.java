@@ -21,6 +21,7 @@ public class MvcConfig implements WebMvcConfigurer {
 
     public void addTieBa(ViewControllerRegistry registry){
         registry.addViewController("/article").setViewName("article");
+        registry.addViewController("/article/reply").setViewName("reply");
     }
 
     //静态文件处理

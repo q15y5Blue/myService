@@ -1,0 +1,49 @@
+<div th:fragment="comments" class="response-area" id="Comments">
+    <h2 class="bold">Comments</h2>
+    <ul class="media-list">
+
+
+        <li v-for="reply in replies" class="media">
+            <div class="post-comment">
+                <a class="pull-left" href="#">
+                    <img class="media-object" th:src="@{/templates/images/blogdetails/2.png}" alt="">
+                </a>
+
+                <div class="media-body">
+                    <span><i class="fa fa-user"></i>用户名 <a href="#">{{reply.author}}</a></span>
+                    <p>{{reply.content}}</p>
+                    <ul class="nav navbar-nav post-nav">
+                        <li><a href="#"><i class="fa fa-clock-o"></i>{{reply.date}}</a></li>
+                        <li><a href="#"><i class="fa fa-reply"></i>回复</a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <!--&lt;!&ndash; childList &ndash;&gt;-->
+            <!--<div class="parrent">-->
+                <!--<ul class="media-list">-->
+                    <!--<li class="post-comment reply">-->
+                        <!--<a class="pull-left" href="#">-->
+                            <!--<img class="media-object" th:src="@{/templates/images/blogdetails/3.png}" alt="">-->
+                        <!--</a>-->
+                        <!--<div class="media-body">-->
+                            <!--<span><i class="fa fa-user"></i>Posted by <a href="#">Endure</a></span>-->
+                            <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut </p>-->
+                            <!--<ul class="nav navbar-nav post-nav">-->
+                                <!--<li><a href="#"><i class="fa fa-clock-o"></i>February 11,2014</a></li>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+
+
+        </li>
+
+    </ul>
+</div><!--/Response-area-->
+<div th:replace="common/article/page::replyPage"></div>
+<script class="custJs" th:src="@{/templates/js/web/comments.js}"></script>
+<script class="custJs" type="text/javascript" th:src="@{/templates/js/web/common.js}"></script>
+<!--<div th:replace="common/footer::footer(~{::script.custJs})"></div>-->

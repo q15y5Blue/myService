@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/head::head(~{::title})"></head>
+<title>内容回复</title>
+<body>
+<header th:replace="common/header::header"></header>
+
+    <section id="blog-details" class="padding-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-sm-7">
+                    <div class="row">
+                         <div class="col-md-12 col-sm-12">
+                            <div class="single-blog blog-details two-column">
+                                <!-- 如果帖子有图片-->
+                                <!--<div class="post-thumb">-->
+                                    <!--<a href="#"><img th:src="@{/templates/images/blog/7.jpg}" class="img-responsive" alt=""></a>-->
+                                <!--</div>-->
+                                <div class="post-content overflow">
+                                    <p id="articleId" th:text="${replyObj.article.id}" hidden="hidden"></p>
+                                    <h2 class="post-title bold"><a href="javascript:void(0)" th:text="${replyObj.article.title}"></a></h2>
+                                    <h3 class="post-author"><a href="#" th:text="${replyObj.author}"> --->business </a></h3>
+                                    <p th:text="${replyObj.content}">
+
+                                    </p>
+                                    <div class="post-bottom overflow">
+                                        <ul class="nav navbar-nav post-nav">
+                                            <li><a href="#"><i class="fa fa-tag"></i>Creative</a></li>
+                                            <li><a  href="#"><i class="fa fa-comments"></i><text th:text="${replyNumber}" /> Comments</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="blog-share">
+                                        <span class='st_facebook_hcount'></span>
+                                        <span class='st_twitter_hcount'></span>
+                                        <span class='st_linkedin_hcount'></span>
+                                        <span class='st_pinterest_hcount'></span>
+                                        <span class='st_email_hcount'></span>
+                                    </div>
+
+
+                                    <div th:replace="comments"></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+
+                <div th:replace="common/article/sidePlace"></div>
+            </div>
+        </div>
+    </section>
+    <!--/#blog-->
+
+</body>
+
+<!--<script class="custJs" th:src="@{/templates/js/web/articleJs.js}"></script>-->
+<!--<script class="custJs" type="text/javascript" th:src="@{/templates/js/web/common.js}"></script>-->
+<div th:replace="common/footer::footer(~{::script.custJs})"></div>
+</html>

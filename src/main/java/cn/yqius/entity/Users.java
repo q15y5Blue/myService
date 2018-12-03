@@ -26,7 +26,8 @@ public class Users implements Serializable {
     @Column(length = 600)
     private String imgPath;
 
-    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
     private Set<Article> articleList = new HashSet<Article>();
 
     public Long getId() {

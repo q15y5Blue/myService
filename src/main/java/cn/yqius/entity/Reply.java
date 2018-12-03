@@ -1,7 +1,5 @@
 package cn.yqius.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -29,8 +27,7 @@ public class Reply implements Serializable {
     @Column(name="fn",length = 128)
     private Long parentId;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name="article_id")
     private Article article;
 

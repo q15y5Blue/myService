@@ -26,10 +26,10 @@ public class Article  implements Serializable {
 
 
     @OneToMany(mappedBy = "article",fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Reply> replies= new HashSet<Reply>();
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name="userId")
     private Users user;
 
