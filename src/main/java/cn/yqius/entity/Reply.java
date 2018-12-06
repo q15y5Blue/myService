@@ -1,15 +1,20 @@
 package cn.yqius.entity;
 
+import org.springframework.data.domain.Page;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name="reply")
 public class Reply implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "content",length = 6000)
@@ -30,6 +35,14 @@ public class Reply implements Serializable {
     @ManyToOne()
     @JoinColumn(name="article_id")
     private Article article;
+
+    @OneToMany(mappedBy = "reply", fetch = FetchType.LAZY)
+    private Set<ReplyLzz> lzlReply =new HashSet<ReplyLzz>();
+
+
+
+//    @Transient
+//    private Page<Reply> children;
 
     public Reply() {
     }

@@ -12,7 +12,7 @@ var pageObj = new Vue({
         showList :[]
     },methods:{
         updateShowList:function(leftData){
-            Vue.set(this,'left',leftData);
+            Vue.set(this,'left',leftData>0?leftData:0);
             Vue.set(this,'right',this.totalPages<this.left+this.showMaxPage?this.totalPages:this.left+this.showMaxPage);
             var list = new Array();
             for (var i=this.left,j=0;i <this.right;i++,j++){

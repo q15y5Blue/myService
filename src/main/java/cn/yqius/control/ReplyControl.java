@@ -4,6 +4,8 @@ import java.util.concurrent.atomic.AtomicLong;
 import cn.yqius.entity.Reply;
 import cn.yqius.repository.ReplyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping(path = "/article/reply")
 public class ReplyControl {
+
 
     @Autowired
     private ReplyRepository replyRepository;
@@ -29,9 +32,23 @@ public class ReplyControl {
     @GetMapping(path="/getReplys")
     public @ResponseBody Iterable<Reply> getReplies(
             @RequestParam(defaultValue = "-1") Long articleId,
-            @RequestParam(defaultValue="1") Integer pageNo){
+            @RequestParam(defaultValue="0") Integer pageNo){
         Sort orderFloor = new Sort(Sort.Direction.ASC,"floorNumber");
         PageRequest page = PageRequest.of(pageNo,10,orderFloor);
-        return replyRepository.getAllByArticleExists(articleId,page);
+        PageRequest childPage = PageRequest.of(0,3);
+        Page<Reply> replyPage =replyRepository.getAllByArticleExists(articleId,page);
+        for(Reply r :replyPage.getContent()){
+//            r.setChildren(replyRepository.getThreeChildrenRs(r.getId(),childPage));
+    }
+        return replyPage;
+    }
+
+    //暂时取消楼中楼设定
+    @GetMapping(path = "/getReplyChild")
+    public @ResponseBody Iterable<Reply> getReplyChild(
+            @RequestParam(defaultValue = "-1" ) Long replyId,
+            @RequestParam(defaultValue = "0") Integer pageNo){
+        PageRequest page = PageRequest.of(pageNo,3);
+        return replyRepository.getChildOfReply(replyId,page);
     }
 }
