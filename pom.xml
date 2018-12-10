@@ -69,6 +69,13 @@
       <!--<artifactId>spring-boot-starter-security</artifactId>-->
     <!--</dependency>-->
 
+    <!--jackson - hibernate 解决懒加载问题!!!!!重要 -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-hibernate5</artifactId>
+      <version>2.9.0</version>
+    </dependency>
+
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-test</artifactId>

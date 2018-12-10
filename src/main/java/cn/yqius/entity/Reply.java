@@ -1,13 +1,17 @@
 package cn.yqius.entity;
 
-import org.springframework.data.domain.Page;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonView;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OrderBy;
+import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name="reply")
@@ -24,6 +28,7 @@ public class Reply implements Serializable {
     private String author;
 
     @Column
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date date;
 
     @Column(name = "floor_num", length = 15)
@@ -36,13 +41,17 @@ public class Reply implements Serializable {
     @JoinColumn(name="article_id")
     private Article article;
 
-    @OneToMany(mappedBy = "reply", fetch = FetchType.LAZY)
-    private Set<ReplyLzz> lzlReply =new HashSet<ReplyLzz>();
+    @OrderBy("date ASC")
+    @OneToMany(mappedBy = "reply", fetch = FetchType.LAZY, orphanRemoval=true,cascade = CascadeType.ALL)
+    private Set<ReplyLzz> lzlReply = new HashSet<ReplyLzz>();
 
+    public Set<ReplyLzz> getLzlReply() {
+        return lzlReply;
+    }
 
-
-//    @Transient
-//    private Page<Reply> children;
+    public void setLzlReply(Set<ReplyLzz> lzlReply) {
+        this.lzlReply = lzlReply;
+    }
 
     public Reply() {
     }
@@ -116,4 +125,6 @@ public class Reply implements Serializable {
     public int hashCode() {
         return Objects.hash(id, article);
     }
+
+
 }

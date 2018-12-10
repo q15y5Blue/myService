@@ -1,5 +1,8 @@
 package cn.yqius.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
@@ -12,22 +15,26 @@ public class ReplyLzz {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "content",length = 6000)
+    @Column(name = "content", length = 6000)
     private String content;
 
     @Column(length = 60)
     private String author;
 
     @Column
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date date;
 
     @Column(name = "floor_num", length = 15)
     private Integer floorNumber;
 
-    @Column(name="fn",length = 128)
-    private Long parentId;
+    //articleId
+    @Column(name="article_id",length = 128)
+    private Long articleId;
 
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="fn")
     private Reply reply;
 
     public Long getId() {
@@ -70,12 +77,12 @@ public class ReplyLzz {
         this.floorNumber = floorNumber;
     }
 
-    public Long getParentId() {
-        return parentId;
+    public Long getArticleId() {
+        return articleId;
     }
 
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
+    public void setArticleId(Long articleId) {
+        this.articleId = articleId;
     }
 
     public Reply getReply() {
@@ -100,7 +107,6 @@ public class ReplyLzz {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(id, content);
     }
 }

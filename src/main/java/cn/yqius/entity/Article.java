@@ -1,6 +1,7 @@
 package cn.yqius.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -22,8 +23,8 @@ public class Article  implements Serializable {
     private String content;
 
     @Column
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date date;
-
 
     @OneToMany(mappedBy = "article",fetch = FetchType.LAZY)
     @JsonIgnore
