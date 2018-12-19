@@ -41,6 +41,10 @@ public class Reply implements Serializable {
     @JoinColumn(name="article_id")
     private Article article;
 
+    @ManyToOne()
+    @JoinColumn(name="authorId")
+    private Users user;
+
     @OrderBy("date ASC")
     @OneToMany(mappedBy = "reply", fetch = FetchType.LAZY, orphanRemoval=true,cascade = CascadeType.ALL)
     private Set<ReplyLzz> lzlReply = new HashSet<ReplyLzz>();
@@ -72,13 +76,6 @@ public class Reply implements Serializable {
         this.content = content;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
 
     public Date getDate() {
         return date;
@@ -110,6 +107,22 @@ public class Reply implements Serializable {
 
     public void setArticle(Article article) {
         this.article = article;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
     }
 
     @Override

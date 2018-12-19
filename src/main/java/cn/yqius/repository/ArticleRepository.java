@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-//@RepositoryRestResource(collectionResourceRel = "article", path = "getArticles") //PagingAndSortingRepository
+// @RepositoryRestResource(collectionResourceRel = "article", path = "getArticles") //PagingAndSortingRepository
 public interface ArticleRepository extends JpaRepository<Article,Long> {
 
 }

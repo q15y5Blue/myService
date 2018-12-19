@@ -2,14 +2,16 @@ package cn.yqius.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import sun.jvm.hotspot.debugger.cdbg.basic.LazyBlockSym;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
 @Table(name="ReplyLzz")
-public class ReplyLzz {
+public class ReplyLzz implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,6 +38,18 @@ public class ReplyLzz {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="fn")
     private Reply reply;
+
+    @ManyToOne()
+    @JoinColumn(name="userId")
+    private Users user;
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
+    }
 
     public Long getId() {
         return id;

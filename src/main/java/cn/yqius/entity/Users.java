@@ -30,6 +30,22 @@ public class Users implements Serializable {
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
     private Set<Article> articleList = new HashSet<Article>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private Set<Reply> replies = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private Set<ReplyLzz> replyLzz= new HashSet<>();
+
+    public Set<ReplyLzz> getReplyLzz() {
+        return replyLzz;
+    }
+
+    public void setReplyLzz(Set<ReplyLzz> replyLzz) {
+        this.replyLzz = replyLzz;
+    }
+
     public Long getId() {
         return id;
     }
@@ -68,6 +84,14 @@ public class Users implements Serializable {
 
     public void setImgPath(String imgPath) {
         this.imgPath = imgPath;
+    }
+
+    public Set<Reply> getReplies() {
+        return replies;
+    }
+
+    public void setReplies(Set<Reply> replies) {
+        this.replies = replies;
     }
 
     public Users() {
