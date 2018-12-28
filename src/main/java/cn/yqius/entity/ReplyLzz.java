@@ -2,7 +2,6 @@ package cn.yqius.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import sun.jvm.hotspot.debugger.cdbg.basic.LazyBlockSym;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -35,7 +34,7 @@ public class ReplyLzz implements Serializable {
     private Long articleId;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name="fn")
     private Reply reply;
 

@@ -37,15 +37,9 @@ public class ReplyControl {
             @RequestParam(defaultValue="0") Integer pageNo){
         //floorNumber
         Sort orderFloor = new Sort(Sort.Direction.ASC,"floorNumber");
-        PageRequest page = PageRequest.of(pageNo,10,orderFloor);
+        PageRequest page = PageRequest.of(pageNo,20,orderFloor);
         Page<Reply> replyPage =replyRepository.getByArticleExists(articleId, page);
-        System.out.println(replyPage);
         return replyPage;
     }
 
-    @GetMapping(path = "/getReplyChild")
-    public @ResponseBody Iterable<Reply> getReplyChild(
-            @RequestParam(defaultValue = "0") Integer pageNo){
-        return null;
-}
 }

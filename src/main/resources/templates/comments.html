@@ -5,13 +5,13 @@
 
         <li v-for="reply in replies" class="media">
             <div class="post-comment">
-
                 <a class="pull-left" href="#">
                     <img width="80" height="80"  class="media-object" alt=""
-                         :src="reply.user.imgPath != null ? reply.user.imgPath:'/templates/images/blogdetails/1.png'" >
+                         :src="reply.user.imgPath != null ? reply.user.imgPath:'/templates/images/blogdetails/1.png' " >
                 </a>
                 <div class="media-body">
-                    <span><i class="fa fa-user"></i>用户名 <a href="#">{{reply.author}}</a></span>
+                    <span><i class="fa fa-user"></i>
+                        用户名 <a href="#">{{reply.author}}</a></span>
                     <p>{{reply.content}} </p>
                     <ul class="nav navbar-nav post-nav">
                         <li><a href="#"><i class="fa fa-clock-o"></i>{{reply.date}}</a></li>
@@ -20,24 +20,27 @@
                 </div>
             </div>
             <!-- childList -->
+            <!--{{reply.lzlReply}}-->
             <div class="parrent">
                 <ul class="media-list">
-                    <li class="post-comment reply">
-                        <a class="pull-left" href="#">
-                            <img width="62" height="62" class="media-object" th:src="@{/templates/images/blogdetails/3.png}" alt="">
-                        </a>
-                        <div class="media-body">
-                            <span><i class="fa fa-user"></i>Posted by <a href="#">Endure</a></span>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut </p>
-                            <ul class="nav navbar-nav post-nav">
-                                <li><a href="#"><i class="fa fa-clock-o"></i>February 11,2014</a></li>
-                            </ul>
-                        </div>
-                    </li>
+                    <template v-for="re in reply.lzlReply">
+
+                        <li class="post-comment reply">
+                            <a class="pull-left" href="#">
+                                <img width="52" height="52" class="media-object"
+                                     th:src="re.user.imgPath eq 'None' ? re.user.imgPath :'/templates/images/blogdetails/2.png' " alt="">
+                            </a>
+                            <div class="media-body">
+                                <span><i class="fa fa-user"></i>用户名 <a href="#">{{re.user.username}}</a></span>
+                                <p>{{re.content}}</p>
+                                <ul class="nav navbar-nav post-nav">
+                                    <li><a href="#"><i class="fa fa-clock-o"></i>{{re.date}}</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </template>
                 </ul>
             </div>
-
-
         </li>
 
     </ul>

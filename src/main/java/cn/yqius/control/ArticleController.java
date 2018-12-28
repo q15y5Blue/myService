@@ -22,7 +22,7 @@ public class ArticleController {
     @GetMapping(path="/getPages")
     public @ResponseBody Iterable<Article> getArticlePage(@RequestParam(defaultValue="1") Integer pageNo){
         Sort orderTime = new Sort(Sort.Direction.DESC,"date");
-        PageRequest page = PageRequest.of(pageNo,4, orderTime);
+        PageRequest page = PageRequest.of(pageNo,20, orderTime);
         return articleRepository.findAll(page);
     }
 

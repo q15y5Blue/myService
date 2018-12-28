@@ -1,15 +1,9 @@
 package cn.yqius.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonView;
-import org.hibernate.annotations.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OrderBy;
-import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.*;
 
@@ -37,6 +31,7 @@ public class Reply implements Serializable {
     @Column(name="fn",length = 128)
     private Long parentId;
 
+    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name="article_id")
     private Article article;
@@ -45,8 +40,7 @@ public class Reply implements Serializable {
     @JoinColumn(name="authorId")
     private Users user;
 
-    @OrderBy("date ASC")
-    @OneToMany(mappedBy = "reply", fetch = FetchType.LAZY, orphanRemoval=true,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "reply", orphanRemoval=true,cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<ReplyLzz> lzlReply = new HashSet<ReplyLzz>();
 
     public Set<ReplyLzz> getLzlReply() {
@@ -75,7 +69,6 @@ public class Reply implements Serializable {
     public void setContent(String content) {
         this.content = content;
     }
-
 
     public Date getDate() {
         return date;
@@ -138,6 +131,5 @@ public class Reply implements Serializable {
     public int hashCode() {
         return Objects.hash(id, article);
     }
-
 
 }

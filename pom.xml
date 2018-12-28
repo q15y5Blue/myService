@@ -97,7 +97,7 @@
       <artifactId>mysql-connector-java</artifactId>
     </dependency>
 
-
+    <!--java11版本会出现 avax.xml.bind notFound-->
   </dependencies>
 
   <build>
