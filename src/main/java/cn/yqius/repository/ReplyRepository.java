@@ -6,9 +6,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 // 🐑🐑🐑🐑🐑🐑🐑 🐑🐑🐑🐑🐑🐑🐑 🐑🐑🐑🐑🐑🐑🐑 🐑🐑🐑🐑🐑🐑🐑 🐑🐑🐑🐑🐑🐑🐑 🐑🐑🐑🐑🐑🐑🐑
+//@Repository("replyRepository")
 public interface ReplyRepository extends JpaRepository<Reply,Long> {
 
     @Query("select count(*) as floors from Reply r where  r.article.id = ?1")
@@ -20,5 +25,10 @@ public interface ReplyRepository extends JpaRepository<Reply,Long> {
     //-1是楼中楼 1是主楼 查询非主楼、非楼中楼的回复 ,
     @Query("select r from Reply r where r.article.id = :articleId and r.floorNumber not in ('-1','1') ")
     Page<Reply> getByArticleExists(@Param("articleId") Long articleId, Pageable page);
+
+    //根据关键字查询
+    // order by r.date desc limit 10
+//    @Query(value = "select r.* from reply r where r.content LIKE :quest ",nativeQuery = true)
+    List<Reply> findRepliesByContentContaining(@Param("quest") String quest, Pageable page);
 
 }

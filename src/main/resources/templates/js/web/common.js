@@ -1,3 +1,4 @@
+//分页 Common
 var pageObj = new Vue({
     el : "#pageObj",
     data:{

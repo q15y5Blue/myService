@@ -2,9 +2,14 @@ package cn.yqius.view;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.nio.charset.Charset;
+import java.util.List;
 
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
@@ -18,10 +23,11 @@ public class MvcConfig implements WebMvcConfigurer {
         this.addTieBa(registry);
     }
 
-
+    //addViewController("前端显示").setViewName("实际路径")
     public void addTieBa(ViewControllerRegistry registry){
         registry.addViewController("/article").setViewName("article");
         registry.addViewController("/article/reply").setViewName("reply");
+        registry.addViewController("/faq").setViewName("faq");
     }
 
     //静态文件处理

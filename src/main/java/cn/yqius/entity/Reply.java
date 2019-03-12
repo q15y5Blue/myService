@@ -13,34 +13,34 @@ public class Reply implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long id =0L;
 
     @Column(name = "content",length = 6000)
-    private String content;
+    private String content = "";
 
     @Column(length = 60)
-    private String author;
+    private String author = "";
 
     @Column
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date date;
 
     @Column(name = "floor_num", length = 15)
-    private Integer floorNumber;
+    private Integer floorNumber = 0;
 
     @Column(name="fn",length = 128)
-    private Long parentId;
+    private Long parentId = 0L;
 
     @JsonIgnore
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="article_id")
     private Article article;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="authorId")
     private Users user;
 
-    @OneToMany(mappedBy = "reply", orphanRemoval=true,cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "reply", orphanRemoval=true,cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Set<ReplyLzz> lzlReply = new HashSet<ReplyLzz>();
 
     public Set<ReplyLzz> getLzlReply() {
@@ -53,6 +53,8 @@ public class Reply implements Serializable {
 
     public Reply() {
     }
+
+
 
     public Long getId() {
         return id;
