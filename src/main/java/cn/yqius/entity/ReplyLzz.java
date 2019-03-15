@@ -34,11 +34,11 @@ public class ReplyLzz implements Serializable {
     private Long articleId;
 
     @JsonIgnore
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="fn")
     private Reply reply;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="userId")
     private Users user;
 

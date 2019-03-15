@@ -7,8 +7,12 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
 
+//@NamedEntityGraph注解的name是类中的属性名称 非自定义名称
 @Entity
 @Table(name="reply")
+@NamedEntityGraph(name="graph.repliesAll",
+        attributeNodes={@NamedAttributeNode("user"), @NamedAttributeNode("article"),@NamedAttributeNode(value="lzlReply",subgraph = "lzlSub")},
+        subgraphs = {@NamedSubgraph(name="lzlSub",attributeNodes = {@NamedAttributeNode("user") })})
 public class Reply implements Serializable {
 
     @Id
@@ -41,7 +45,7 @@ public class Reply implements Serializable {
     private Users user;
 
     @OneToMany(mappedBy = "reply", orphanRemoval=true,cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private Set<ReplyLzz> lzlReply = new HashSet<ReplyLzz>();
+    private Set<ReplyLzz> lzlReply ;
 
     public Set<ReplyLzz> getLzlReply() {
         return lzlReply;

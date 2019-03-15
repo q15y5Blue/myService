@@ -6,8 +6,7 @@
         <li v-for="reply in replies" class="media">
             <div class="post-comment">
                 <a class="pull-left" href="#">
-                    <img width="80" height="80"  class="media-object" alt=""
-                         :src="reply.user.imgPath != null ? reply.user.imgPath:'/templates/images/blogdetails/1.png' " >
+                    <img width="80" height="80"  :src="reply.user.imgPath=='null' ? '/templates/images/blogdetails/1.png':reply.user.imgPath" >
                 </a>
                 <div class="media-body">
                     <span><i class="fa fa-user"></i>
@@ -20,21 +19,21 @@
                 </div>
             </div>
             <!-- childList -->
+
             <!--{{reply.lzlReply}}-->
             <div class="parrent">
                 <ul class="media-list">
                     <template v-for="re in reply.lzlReply">
-
                         <li class="post-comment reply">
-                            <a class="pull-left" href="#">
-                                <img width="52" height="52" class="media-object"
-                                     th:src="re.user.imgPath eq 'None' ? re.user.imgPath :'/templates/images/blogdetails/2.png' " alt="">
-                            </a>
+                            <!--<a class="pull-left" href="#">-->
+                                <!--<img width="52" height="52" class="media-object"-->
+                                     <!--th:src="re.user.imgPath" alt="">-->
+                            <!--</a>-->
                             <div class="media-body">
-                                <span><i class="fa fa-user"></i>用户名 <a href="#">{{re.user.username}}</a></span>
+                                <span><i class="fa fa-user"></i>用户名<a href="#">{{re.user.username}}</a></span>
                                 <p>{{re.content}}</p>
-                                <ul class="nav navbar-nav post-nav">
-                                    <li><a href="#"><i class="fa fa-clock-o"></i>{{re.date}}</a></li>
+                                <ul v-if="re.date!=null" class="nav navbar-nav post-nav">
+                                    <li ><a href="#"><i class="fa fa-clock-o"></i>{{re.date}}</a></li>
                                 </ul>
                             </div>
                         </li>
