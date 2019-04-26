@@ -21,6 +21,9 @@ public class Users implements Serializable {
     private String username;
 
     @Column(length = 60)
+    private String password;
+
+    @Column(length = 60)
     private String nickName;
 
     @Column(length = 600)
@@ -94,7 +97,19 @@ public class Users implements Serializable {
         this.replies = replies;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public Users() {
     }
 
+    public Users(String username,String password){
+        this.username=username;
+        this.password=password;
+    }
 }

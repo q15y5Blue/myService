@@ -29,7 +29,9 @@ public interface ReplyRepository extends JpaRepository<Reply,Long> {
     @EntityGraph(value = "graph.repliesAll")
     Page<Reply> getByArticleExists(@Param("articleId") Long articleId, Pageable page);
 
-    //FAQ
+    //SELECT * FROM reply WHERE MATCH(content) AGAINST('明镜高悬' in boolean mode ) order by date desc  limit 500 ;
+    @Query(nativeQuery = true,value = "SELECT * FROM reply WHERE MATCH(content) " +
+            "AGAINST(:quest in boolean mode )")
     List<Reply> findRepliesByContentContaining(@Param("quest") String quest, Pageable page);
 
 }

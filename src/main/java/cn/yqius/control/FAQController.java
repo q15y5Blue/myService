@@ -28,13 +28,18 @@ import java.util.List;
 @RequestMapping(path = "/faq")
 public class FAQController {
 
+
+    private final ReplyRepository replyRepository;
+
     @Autowired
-    private ReplyRepository replyRepository;
+    public FAQController(ReplyRepository replyRepository){
+        this.replyRepository = replyRepository;
+    }
 
     @GetMapping(path="/getAnswers")
     public @ResponseBody
     List<Reply> getAnswers(@RequestParam(defaultValue="error") String quest){
-        //中文参数 遇到中文乱码问题待解决
+        //中文参数 遇到中文乱码问题已解决
         Sort orderTime = new Sort(Sort.Direction.DESC,"date");
         PageRequest page = PageRequest.of(0,10, orderTime);
         return replyRepository.findRepliesByContentContaining(quest,page);

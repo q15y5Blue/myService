@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/head::head(~{::title})"></head>
+<link th:href="@{/templates/css/login/login.css}" rel="stylesheet">
+<title>登录界面</title>
+<body>
+<header th:replace="common/header::header"></header>
+
+<div class="login_box" id="login_box">
+    <div class="login_l_img"><img th:src="@{templates/images/login/login-img.png}"/></div>
+    <div class="login">
+        <div class="login_logo"><a href="#"><img th:src="@{templates/images/login/login_logo.png}"/></a></div>
+        <div class="login_name">
+            <p>后台管理系统</p>
+        </div>
+        <div >
+            <input name="username" type="text" placeholder="用户名" v-model="username">
+            <input name="password" type="password" placeholder="密码" v-model="password"/>
+
+            <input value="登录" style="width:100%;" type="submit" @click="checkUser()">
+        </div>
+    </div>
+</div>
+
+<script class="custJs" th:src="@{templates/js/web/login.js}"></script>
+<div th:replace="common/footer::footer(~{::script.custJs})"></div>
+</body>
+</html>

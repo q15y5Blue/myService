@@ -11,8 +11,11 @@ import java.util.*;
 @Entity
 @Table(name="reply")
 @NamedEntityGraph(name="graph.repliesAll",
-        attributeNodes={@NamedAttributeNode("user"), @NamedAttributeNode("article"),@NamedAttributeNode(value="lzlReply",subgraph = "lzlSub")},
-        subgraphs = {@NamedSubgraph(name="lzlSub",attributeNodes = {@NamedAttributeNode("user") })})
+        attributeNodes={@NamedAttributeNode("user"),
+                @NamedAttributeNode("article"),
+                @NamedAttributeNode(value="lzlReply",subgraph = "lzlSub")},
+        subgraphs = {@NamedSubgraph(name="lzlSub",
+                attributeNodes = {@NamedAttributeNode("user") })})
 public class Reply implements Serializable {
 
     @Id

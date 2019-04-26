@@ -2,37 +2,37 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="common/head::head(~{::title})"></head>
 <link th:href="@{/templates/css/faq/faq.css}" rel="stylesheet">
+
 <title>FAQ问答</title>
 <body>
 <header th:replace="common/header::header"></header>
 <section  class="padding-top" id="faqObj">
 <div class="container" >
-    <div class="col-md-4 col-sm-12" >
-        <div class="contact-form bottom" style="text-align:center;width: 800px;margin-left: 100px">
-        <h2>查询记录</h2>
-        <div id="main-contact-form" name="contact-form" method="post" ref="contact">
-            <div class="form_status" ref="formStatus">
-                <p id="selecting" hidden="hidden"><i class="fa fa-spinner fa-spin"></i>正在查询...</p>
-                <p id="selected" hidden="hidden" class="text-success">查询成功</p>
-            </div>
-            <div id="convo" data-from="Sonu Joshi">
-                <ul class="chat-thread">
-                    <template v-for="lis in questionsList"/>
-                        <li v-if="lis.type=='quest'" class="rightLi"><p>{{lis.content}}</p></li>
-                        <li v-if="lis.type=='ans'" class="leftLi"><p>{{lis.content}}</p></li>
-                    </template>
-                </ul>
-            </div>
+    <div class="row" >
+        <div class="col-sm-12 text-center">
+            <h2>查询记录</h2>
+            <div id="main-contact-form" name="contact-form" method="post" ref="contact">
+                <div class="form_status" ref="formStatus">
+                    <p id="selecting" hidden="hidden"><i class="fa fa-spinner fa-spin"></i>正在查询...</p>
+                    <p id="selected" hidden="hidden" class="text-success">查询成功</p>
+                </div>
+                <div id="convo" data-from="Sonu Joshi">
+                    <ul class="chat-thread">
+                        <template v-for="lis in questionsList"/>
+                            <li v-if="lis.type=='quest'" class="rightLi"><p>{{lis.content}}</p></li>
+                            <li v-if="lis.type=='ans'" class="leftLi"><p>{{lis.content}}</p></li>
+                        </template>
+                    </ul>
+                </div>
 
-            <div class="form-group" style="margin: auto;width: 80%;">
-                <input id="inputArea"  v-model="newContent" type="text" name="查询内容" class="form-control" required="required" placeholder="content">
+                <div class="form-group" style="margin: auto;width: 80%;">
+                    <input id="inputArea"  v-model="newContent" type="text" name="查询内容" class="form-control" required="required" placeholder="content">
+                </div>
+                <div class="form-group" style="margin: auto;width: 80%;">
+                    <input ref="submitButton" v-if="newContent!=''" @click="addNewQuestion()"  type="submit" name="submit" class="btn btn-submit" value="查询" style="margin-bottom: 50px">
+                    <input v-if="newContent==''" disabled="disabled" type="submit" name="submit" class="btn btn-submit" value="查询" style="margin-bottom: 50px">
+                </div>
             </div>
-            <div class="form-group" style="margin: auto;width: 80%;">
-                <input ref="submitButton" v-if="newContent!=''" @click="addNewQuestion()"  type="submit" name="submit" class="btn btn-submit" value="查询" style="margin-bottom: 50px">
-                <input v-if="newContent==''" disabled="disabled" type="submit" name="submit" class="btn btn-submit" value="查询" style="margin-bottom: 50px">
-
-            </div>
-        </div>
         </div>
     </div>
 </div>

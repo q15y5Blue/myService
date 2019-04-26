@@ -16,9 +16,14 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/article/reply")
 public class ReplyControl {
 
+    //final只会在程序启动的时候初始化一次，并且在程序运行的时候不会再改变
+    private final ReplyRepository replyRepository;
 
+    //推荐对构造函数进行注解
     @Autowired
-    private ReplyRepository replyRepository;
+    public ReplyControl(ReplyRepository replyRepository){
+        this.replyRepository = replyRepository;
+    }
 
     //get Page info
     @GetMapping(path="/getReply")

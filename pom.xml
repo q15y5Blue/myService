@@ -25,6 +25,15 @@
   </properties>
 
   <dependencies>
+
+    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-reactor-netty -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-reactor-netty</artifactId>
+      <version>2.1.0.RELEASE</version>
+    </dependency>
+
+
     <!-- https://mvnrepository.com/artifact/junit/junit -->
     <dependency>
       <groupId>junit</groupId>
@@ -47,10 +56,27 @@
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
     </dependency>
 
+     <!--从 tomcat到 Jetty-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-tomcat</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jetty</artifactId>
+    </dependency>
+     <!--webFlux 基于netty的异步网络结构, 不同于jetty\tomcat的同步网络结构-->
+      <!--<dependency>-->
+          <!--<groupId>org.springframework.boot</groupId>-->
+          <!--<artifactId>spring-boot-starter-webflux</artifactId>-->
+      <!--</dependency>-->
 
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -58,16 +84,16 @@
       <scope>test</scope>
     </dependency>
 
-    <!--开发使用 方便重启-->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-devtools</artifactId>
-    </dependency>
-
+    <!--&lt;!&ndash;开发使用 方便重启&ndash;&gt;-->
     <!--<dependency>-->
       <!--<groupId>org.springframework.boot</groupId>-->
-      <!--<artifactId>spring-boot-starter-security</artifactId>-->
+      <!--<artifactId>spring-boot-devtools</artifactId>-->
     <!--</dependency>-->
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
 
     <!--jackson - hibernate 解决懒加载问题!!!!!重要 -->
     <dependency>
@@ -96,14 +122,17 @@
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
     </dependency>
-
+      <!--redis-->
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-data-redis</artifactId>
+      </dependency>
     <!--java11版本会出现 avax.xml.bind notFound-->
   </dependencies>
 
   <build>
     <finalName>myService</finalName>
       <plugins>
-
           <plugin>
               <groupId>org.springframework.boot</groupId>
               <artifactId>spring-boot-maven-plugin</artifactId>
@@ -118,7 +147,6 @@
               </execution>
             </executions>
           </plugin>
-
       </plugins>
 
   </build>
