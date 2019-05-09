@@ -1,0 +1,46 @@
+html{
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%
+
+}
+
+body {
+    margin:0 auto;
+}
+div{
+    margin:0 auto
+}
+table{
+    margin:0 auto;
+    width:1000px;
+    align-content: center;
+    border-width: 0px;
+    border-style: solid;
+    border-color: #666666;
+    border-collapse: collapse;
+}
+button{
+    border: 1px;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+table tr {
+    border-style: solid;
+    border-color: #666666;
+    border-width: 1px;
+}
+
+table td {
+    text-align: center;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #666666;
+    width: 15%;
+    height: 10%;
+}

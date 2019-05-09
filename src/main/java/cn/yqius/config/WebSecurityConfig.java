@@ -15,11 +15,11 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
         http.authorizeRequests()
                 //所有用户都能访问
                 .antMatchers("/index", "/templates/images/**","/templates/css/**","/templates/fonts/**","/templates/error/**","/templates/js/**").permitAll()
-                .antMatchers("/login/getUser").permitAll()
+                .antMatchers("/login/getUser","/redis/**").permitAll()
+                .antMatchers("/table/**").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().logout().permitAll();

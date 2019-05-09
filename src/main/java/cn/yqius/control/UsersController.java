@@ -30,8 +30,10 @@ public class UsersController {
         System.out.println(password);
         user = userRepository.getUsersByUsernameAndPassword(username,password);
         if(user!=null){
-
+            return user;
         }
-        return user;
+        else{
+            return null;
+        }
     }
 }

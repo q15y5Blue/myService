@@ -22,6 +22,7 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/article").setViewName("article");
         registry.addViewController("/article/reply").setViewName("reply");
         registry.addViewController("/faq").setViewName("faq");
+        registry.addViewController("/table/cashLedgerTable").setViewName("/custom/cashLedgerTable");
     }
 
     //静态文件处理

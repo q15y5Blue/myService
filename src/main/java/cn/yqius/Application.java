@@ -11,21 +11,22 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.ApplicationContext;
 
+//public class Application extends SpringBootServletInitializer implements CommandLineRunner
 @SpringBootApplication
-public class Application extends SpringBootServletInitializer implements CommandLineRunner {
+public class Application{
     private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
 
-    private final DiscardServer discardServer;
-
-    @Autowired
-    public Application(DiscardServer discardServer) {
-        this.discardServer = discardServer;
-    }
-
-    @Override
-    public void run(String... args) throws Exception {
-        discardServer.run(8088);
-    }
+//    private final DiscardServer discardServer;
+//
+//    @Autowired
+//    public Application(DiscardServer discardServer) {
+//        this.discardServer = discardServer;
+//    }
+//
+//    @Override
+//    public void run(String... args) throws Exception {
+//        discardServer.run(8088);
+//    }
 ////////////////////////////////////////////////
 
 

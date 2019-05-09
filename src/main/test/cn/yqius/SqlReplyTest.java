@@ -13,9 +13,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -49,6 +46,7 @@ public class SqlReplyTest {
         PageRequest page = PageRequest.of(0,20,orderFloor);
         Page<Reply> replyPage =replyRepository.getByArticleExists(5539801878L, page);
         replyPage.getContent().forEach(
+//                System.out::println
             item-> System.out.println(item.getContent()+"\n"+item.getUser().getUsername())
         );
     }
