@@ -1,7 +1,9 @@
 package cn.yqius.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -20,20 +22,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/index", "/templates/images/**","/templates/css/**","/templates/fonts/**","/templates/error/**","/templates/js/**").permitAll()
                 .antMatchers("/login/getUser","/redis/**").permitAll()
                 .antMatchers("/table/**").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/design/**").permitAll()
+                .anyRequest().authenticated().and()
+                    .httpBasic()
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().logout().permitAll();
     }
 
-    @Bean
-    @Override
-    public UserDetailsService userDetailsService() {
-        UserDetails user =
-                User.withDefaultPasswordEncoder().username("username")
-                        .password("password")
-                        .roles("USER")
-                        .build();
+//    @Bean
+//    @Override
+//    public UserDetailsService userDetailsService() {
+//        UserDetails user =
+//                User.withDefaultPasswordEncoder().username("username")
+//                        .password("password")
+//                        .roles("USER")
+//                        .build();
+//
+//        return new InMemoryUserDetailsManager(user);
+//    }
 
-        return new InMemoryUserDetailsManager(user);
+    //test
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser("admin").password("admin").roles("USER");//<2>
     }
 }

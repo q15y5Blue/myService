@@ -3,6 +3,7 @@ package cn.yqius.control;
 import cn.yqius.entity.Users;
 import cn.yqius.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +30,8 @@ public class UsersController {
         System.out.println(username);
         System.out.println(password);
         user = userRepository.getUsersByUsernameAndPassword(username,password);
+        System.out.println(user);
+        Session session = new Session();
         if(user!=null){
             return user;
         }
